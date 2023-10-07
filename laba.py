@@ -32,3 +32,24 @@ def two_moves_path(figure, k, l, m, n):
             return [(k, l), (k, m), (m, n)]
         else:
             return []
+
+        k = int(input("Введите вертикальную координату для поля k: "))
+        l = int(input("Введите горизонтальную координату для поля l: "))
+        m = int(input("Введите вертикальную координату для поля m: "))
+        n = int(input("Введите горизонтальную координату для поля n: "))
+        figure = input("Введите фигуру (ферзь, ладья, слон или конь): ")
+
+        result_a = "Поля разного цвета"
+        if is_same_color_square(k, l, m, n):
+            result_a = "Поля одного цвета"
+
+        result_b = "Не угрожает"
+        if is_threatened(figure, k, l, m, n):
+            result_b = "Угрожает"
+
+        result_c_one_move = "Нельзя добраться за один ход"
+        if can_reach_in_one_move(figure, k, l, m, n):
+            result_c_one_move = "Можно добраться за один ход"
+
+        result_c_two_moves = two_moves_path(figure, k, l, m, n)
+
