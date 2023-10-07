@@ -37,17 +37,23 @@ def display_chessboard(k, l, m, n):
     for i in range(8, 0, -1):
         for j in range(1, 9):
             if (i + j) % 2 == 0:
-                print('□', end=' ')
+                if (i, j) == (k, l) or (i, j) == (m, n):
+                    print('K', end=' ')
+                else:
+                    print('□', end=' ')
             else:
-                print('■', end=' ')
+                if (i, j) == (k, l) or (i, j) == (m, n):
+                    print('K', end=' ')
+                else:
+                    print('■', end=' ')
         print()
 
     print(f"\nВыбранные поля: ({k}, {l}) и ({m}, {n})")
 
-k = int(input("Введите вертикальную координату для поля k (буква a-h): ")).lower
-l = int(input("Введите горизонтальную координату для поля l(цифра 1-8): "))
-m = int(input("Введите вертикальную координату для поля m(буква a-h): ")).lower
-n = int(input("Введите горизонтальную координату для поля n(цифра 1-8): "))
+k = ord(input("Введите вертикальную координату для поля k (буква a-h): ").lower()) - ord('a') + 1
+l = int(input("Введите горизонтальную координату для поля l (цифра 1-8): "))
+m = ord(input("Введите вертикальную координату для поля m (буква a-h): ").lower()) - ord('a') + 1
+n = int(input("Введите горизонтальную координату для поля n (цифра 1-8): "))
 figure = input("Введите фигуру (ферзь, ладья, слон или конь): ")
 
 result_a = "Поля разного цвета"
@@ -64,8 +70,7 @@ if can_reach_in_one_move(figure, k, l, m, n):
 
 result_c_two_moves = two_moves_path(figure, k, l, m, n)
 
-# Вывод результатов
-print(f"а) {result_a}")
+print(f"\nа) {result_a}")
 print(f"б) {result_b}")
 print(f"в) {result_c_one_move}")
 if result_c_one_move == "Нельзя добраться за один ход":
