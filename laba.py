@@ -50,6 +50,24 @@ def display_chessboard(k, l, m, n):
 
     print(f"\nВыбранные поля: ({k}, {l}) и ({m}, {n})")
 
+def input_chess_coordinates(prompt):
+    while True:
+        try:
+            coordinates = input(prompt).strip().upper()
+            if len(coordinates) != 2:
+                raise ValueError
+            column = ord(coordinates[0]) - ord('A') + 1
+            row = int(coordinates[1])
+            if not (1 <= column <= 8 and 1 <= row <= 8):
+                raise ValueError
+            return row, column
+        except ValueError:
+            print("Некорректный ввод. Пожалуйста, введите координаты в формате АБ (например, B7).")
+
+k, l = input_chess_coordinates("Введите координаты поля k (например, B7): ")
+m, n = input_chess_coordinates("Введите координаты поля m (например, E5): ")
+figure = input("Введите фигуру (ферзь, ладья, слон или конь): ")
+
 k = ord(input("Введите вертикальную координату для поля k (буква a-h): ").lower()) - ord('a') + 1
 l = int(input("Введите горизонтальную координату для поля l (цифра 1-8): "))
 m = ord(input("Введите вертикальную координату для поля m (буква a-h): ").lower()) - ord('a') + 1
